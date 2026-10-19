@@ -13,7 +13,7 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="Fecha"
-            android:textColor="@color/black"
+            android:textColor="@color/texto"
             android:textSize="13sp"
             android:textStyle="bold" />
         <TextView
@@ -21,7 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/black"
+            android:textColor="@color/texto"
             android:textSize="13sp" />
     </LinearLayout>
 
@@ -33,7 +33,7 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="Hora"
-            android:textColor="@color/black"
+            android:textColor="@color/texto"
             android:textSize="13sp"
             android:textStyle="bold" />
         <TextView
@@ -41,7 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/black"
+            android:textColor="@color/texto"
             android:textSize="13sp" />
     </LinearLayout>
 
@@ -53,7 +53,7 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="Usuario"
-            android:textColor="@color/black"
+            android:textColor="@color/texto"
             android:textSize="13sp"
             android:textStyle="bold" />
         <TextView
@@ -61,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/black"
+            android:textColor="@color/texto"
             android:textSize="13sp" />
     </LinearLayout>
 
@@ -73,7 +73,7 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="Acción"
-            android:textColor="@color/black"
+            android:textColor="@color/texto"
             android:textSize="13sp"
             android:textStyle="bold" />
         <TextView
@@ -81,7 +81,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/black"
+            android:textColor="@color/texto"
             android:textSize="13sp" />
     </LinearLayout>
 
@@ -93,7 +93,7 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="Distancia"
-            android:textColor="@color/black"
+            android:textColor="@color/texto"
             android:textSize="13sp"
             android:textStyle="bold" />
         <TextView
@@ -101,7 +101,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/black"
+            android:textColor="@color/texto"
             android:textSize="13sp" />
     </LinearLayout>
 

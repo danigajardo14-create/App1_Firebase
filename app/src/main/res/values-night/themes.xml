@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.App1_Firebase" parent="Theme.Material3.Light.NoActionBar">
-        <item name="colorPrimary">@color/black</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="colorPrimary">@color/primario</item>
+        <item name="android:windowBackground">@color/fondo</item>
     </style>
 
 </resources>

@@ -2,9 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="azul_titulo">#FF0A1F8F</color>
-    <color name="rojo_volver">#FFA80000</color>
-    <color name="verde_on">#FF1B7F3A</color>
-    <color name="gris_borde">#FF555555</color>
-    <color name="gris_claro">#FFEDEDED</color>
+    <color name="fondo">#FFECEFF4</color>
+    <color name="primario">#FF00796B</color>
+    <color name="primario_oscuro">#FF004D40</color>
+    <color name="texto">#FF263238</color>
+    <color name="texto_suave">#FF607D8B</color>
+    <color name="borde">#FFB0BEC5</color>
+    <color name="acento">#FFFFA000</color>
+    <color name="volver">#FF546E7A</color>
+    <color name="peligro">#FFC62828</color>
+    <color name="verde_on">#FF2E7D32</color>
 </resources>

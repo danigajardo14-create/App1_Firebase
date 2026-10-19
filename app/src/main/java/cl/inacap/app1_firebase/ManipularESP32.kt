@@ -81,7 +81,7 @@ class ManipularESP32 : AppCompatActivity() {
                     tvestado.setTextColor(getColor(R.color.verde_on))
                 } else {
                     tvestado.text = "Estado: DESACTIVADO"
-                    tvestado.setTextColor(getColor(R.color.rojo_volver))
+                    tvestado.setTextColor(getColor(R.color.peligro))
                 }
                 btnsensor.isEnabled = circuitoActivo
 
