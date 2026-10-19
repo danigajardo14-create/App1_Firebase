@@ -1,0 +1,29 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    "usuarios": {
+      "$rut": {
+        ".read": "auth != null",
+        ".write": "auth != null && !data.exists()",
+        ".validate": "newData.hasChildren(['rut', 'nombre', 'apellido', 'correo', 'cargo', 'contrasena']) && newData.child('rut').val() === $rut && newData.child('contrasena').val().length === 64"
+      }
+    },
+
+    "acciones": {
+      ".read": "auth != null",
+      ".indexOn": ["timestamp"],
+      "$id": {
+        ".write": "auth != null && !data.exists()",
+        ".validate": "newData.hasChildren(['fecha', 'hora', 'usuario', 'accion', 'timestamp'])"
+      }
+    },
+
+    "circuito": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      ".validate": "newData.hasChildren(['estado', 'usuario', 'ultimaAccion'])"
+    }
+  }
+}
