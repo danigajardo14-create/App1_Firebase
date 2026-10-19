@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "880992339073",
+    "firebase_url": "https://app-iot-dani-ti3042-default-rtdb.firebaseio.com",
+    "project_id": "app-iot-dani-ti3042",
+    "storage_bucket": "app-iot-dani-ti3042.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880992339073:android:0485dc5090759d960ab980",
+        "android_client_info": {
+          "package_name": "cl.inacap.app1_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBu_AQttUpep2NDyWkQ-iwxY9E7NRBtH4s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
