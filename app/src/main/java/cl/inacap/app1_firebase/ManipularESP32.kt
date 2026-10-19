@@ -22,6 +22,7 @@ class ManipularESP32 : AppCompatActivity() {
     private lateinit var tvusumanipular: TextView
     private lateinit var tvestado: TextView
     private lateinit var tvultimo: TextView
+    private lateinit var tvconexion: TextView
     private lateinit var btnon: Button
     private lateinit var btnoff: Button
     private lateinit var btnsensor: Button
@@ -29,10 +30,13 @@ class ManipularESP32 : AppCompatActivity() {
 
     private var usu: Usuario? = null
     private var circuitoActivo = false
+    private var conectado = true
 
     private lateinit var refCircuito: DatabaseReference
     private lateinit var refAcciones: DatabaseReference
     private var listenerCircuito: ValueEventListener? = null
+    private lateinit var refConexion: DatabaseReference
+    private var listenerConexion: ValueEventListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +51,7 @@ class ManipularESP32 : AppCompatActivity() {
         tvusumanipular = findViewById(R.id.tvusumanipular)
         tvestado = findViewById(R.id.tvestado)
         tvultimo = findViewById(R.id.tvultimo)
+        tvconexion = findViewById(R.id.tvconexion)
         btnon = findViewById(R.id.btnon)
         btnoff = findViewById(R.id.btnoff)
         btnsensor = findViewById(R.id.btnsensor)
@@ -58,13 +63,34 @@ class ManipularESP32 : AppCompatActivity() {
         val db = FirebaseDatabase.getInstance().reference
         refCircuito = db.child(Accion.NODO_CIRCUITO)
         refAcciones = db.child(Accion.NODO_ACCIONES)
+        refConexion = FirebaseDatabase.getInstance().getReference(".info/connected")
 
+        escucharConexion()
         escucharCircuito()
         activar()
         desactivar()
         simularSensor()
         volver()
         desactivarFlecha()
+    }
+
+    private fun escucharConexion() {
+        listenerConexion = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                conectado = snapshot.getValue(Boolean::class.java) ?: false
+                if (conectado) {
+                    tvconexion.text = "● Conectado"
+                    tvconexion.setTextColor(getColor(R.color.verde_on))
+                } else {
+                    tvconexion.text = "● Sin conexión (se sincroniza al volver)"
+                    tvconexion.setTextColor(getColor(R.color.peligro))
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        }
+        refConexion.addValueEventListener(listenerConexion!!)
     }
 
     private fun escucharCircuito() {
@@ -135,6 +161,9 @@ class ManipularESP32 : AppCompatActivity() {
             distancia = distancia,
             timestamp = System.currentTimeMillis()
         )
+        if (!conectado) {
+            Toast.makeText(this@ManipularESP32, "Sin conexión: la acción se enviará al reconectar", Toast.LENGTH_SHORT).show()
+        }
         refAcciones.push().setValue(accion)
 
         val datosCircuito = mapOf(
@@ -169,5 +198,6 @@ class ManipularESP32 : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         listenerCircuito?.let { refCircuito.removeEventListener(it) }
+        listenerConexion?.let { refConexion.removeEventListener(it) }
     }
 }
