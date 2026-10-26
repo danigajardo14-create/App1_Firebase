@@ -12,4 +12,8 @@
     <color name="volver">#FF546E7A</color>
     <color name="peligro">#FFC62828</color>
     <color name="verde_on">#FF2E7D32</color>
+    <color name="led_verde">#FF43A047</color>
+    <color name="led_amarillo">#FFFFC107</color>
+    <color name="led_rojo">#FFE53935</color>
+    <color name="led_apagado">#FFCFD8DC</color>
 </resources>

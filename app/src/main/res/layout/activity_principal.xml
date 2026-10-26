@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Control y monitoreo IoT"
+        android:text="Asistencia de estacionamiento IoT"
         android:textColor="@color/texto_suave"
         android:textSize="16sp" />
 

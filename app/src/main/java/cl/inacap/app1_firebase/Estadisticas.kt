@@ -21,6 +21,7 @@ class Estadisticas : AppCompatActivity() {
     private lateinit var tvact: TextView
     private lateinit var tvdes: TextView
     private lateinit var tvobs: TextView
+    private lateinit var tvpel: TextView
     private lateinit var tvdis: TextView
     private lateinit var btnvolest: Button
 
@@ -43,6 +44,7 @@ class Estadisticas : AppCompatActivity() {
         tvact = findViewById(R.id.tvact)
         tvdes = findViewById(R.id.tvdes)
         tvobs = findViewById(R.id.tvobs)
+        tvpel = findViewById(R.id.tvpel)
         tvdis = findViewById(R.id.tvdis)
         btnvolest = findViewById(R.id.btnvolest)
 
@@ -62,6 +64,7 @@ class Estadisticas : AppCompatActivity() {
                 var activaciones = 0
                 var desactivaciones = 0
                 var obstaculos = 0
+                var peligros = 0
                 var distanciaTotal = 0
 
                 for (hijo in snapshot.children) {
@@ -71,6 +74,7 @@ class Estadisticas : AppCompatActivity() {
                         Accion.DESACTIVADO -> desactivaciones++
                         Accion.OBSTACULO, Accion.CERCA -> {
                             obstaculos++
+                            if (a.accion == Accion.CERCA) peligros++
                             if (a.distancia > 0) distanciaTotal += a.distancia
                         }
                     }
@@ -79,6 +83,7 @@ class Estadisticas : AppCompatActivity() {
                 tvact.text = activaciones.toString()
                 tvdes.text = desactivaciones.toString()
                 tvobs.text = obstaculos.toString()
+                tvpel.text = peligros.toString()
                 tvdis.text = "$distanciaTotal cm"
             }
 

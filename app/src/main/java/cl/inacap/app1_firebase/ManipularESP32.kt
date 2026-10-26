@@ -1,7 +1,9 @@
 package cl.inacap.app1_firebase
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -23,6 +25,11 @@ class ManipularESP32 : AppCompatActivity() {
     private lateinit var tvestado: TextView
     private lateinit var tvultimo: TextView
     private lateinit var tvconexion: TextView
+    private lateinit var tvzona: TextView
+    private lateinit var tvbuzzer: TextView
+    private lateinit var ledverde: View
+    private lateinit var ledamarillo: View
+    private lateinit var ledrojo: View
     private lateinit var btnon: Button
     private lateinit var btnoff: Button
     private lateinit var btnsensor: Button
@@ -52,6 +59,11 @@ class ManipularESP32 : AppCompatActivity() {
         tvestado = findViewById(R.id.tvestado)
         tvultimo = findViewById(R.id.tvultimo)
         tvconexion = findViewById(R.id.tvconexion)
+        tvzona = findViewById(R.id.tvzona)
+        tvbuzzer = findViewById(R.id.tvbuzzer)
+        ledverde = findViewById(R.id.ledverde)
+        ledamarillo = findViewById(R.id.ledamarillo)
+        ledrojo = findViewById(R.id.ledrojo)
         btnon = findViewById(R.id.btnon)
         btnoff = findViewById(R.id.btnoff)
         btnsensor = findViewById(R.id.btnsensor)
@@ -110,6 +122,7 @@ class ManipularESP32 : AppCompatActivity() {
                     tvestado.setTextColor(getColor(R.color.peligro))
                 }
                 btnsensor.isEnabled = circuitoActivo
+                mostrarSemaforo(circuitoActivo, ultimaDist)
 
                 var detalle = "Última acción: $ultimaAccion\nPor: ${Seguridad.formatearRut(por)}  $hora"
                 if (ultimaDist >= 0) detalle += "\nDistancia: $ultimaDist cm"
@@ -122,6 +135,29 @@ class ManipularESP32 : AppCompatActivity() {
             }
         }
         refCircuito.addValueEventListener(listenerCircuito!!)
+    }
+
+    private fun mostrarSemaforo(activo: Boolean, distancia: Int) {
+        val zona = if (activo) Accion.zona(distancia) else ""
+        encender(ledverde, zona == Accion.SEGURA, R.color.led_verde)
+        encender(ledamarillo, zona == Accion.OBSTACULO, R.color.led_amarillo)
+        encender(ledrojo, zona == Accion.CERCA, R.color.led_rojo)
+        tvzona.text = when {
+            !activo -> "Sistema apagado"
+            distancia <= 0 -> "Zona Segura · sin obstáculos"
+            zona == Accion.SEGURA -> "Zona Segura · $distancia cm"
+            zona == Accion.OBSTACULO -> "Precaución · $distancia cm"
+            else -> "¡Peligro! · $distancia cm"
+        }
+        tvbuzzer.text = when (zona) {
+            Accion.OBSTACULO -> "Buzzer: intermitente"
+            Accion.CERCA -> "Buzzer: continuo (1500 Hz)"
+            else -> "Buzzer: apagado"
+        }
+    }
+
+    private fun encender(led: View, encendido: Boolean, color: Int) {
+        led.backgroundTintList = ColorStateList.valueOf(getColor(if (encendido) color else R.color.led_apagado))
     }
 
     private fun activar() {
@@ -146,8 +182,8 @@ class ManipularESP32 : AppCompatActivity() {
 
     private fun simularSensor() {
         btnsensor.setOnClickListener {
-            val distancia = Random.nextInt(2, 61)
-            val tipo = if (distancia <= Accion.DISTANCIA_PELIGRO) Accion.CERCA else Accion.OBSTACULO
+            val distancia = Random.nextInt(5, 201)
+            val tipo = Accion.zona(distancia)
             registrarAccion(tipo, distancia, true)
         }
     }

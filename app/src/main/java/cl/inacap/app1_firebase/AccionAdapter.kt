@@ -20,7 +20,14 @@ class AccionAdapter(context: Context, private val lista: List<Accion>) :
         vista.findViewById<TextView>(R.id.tvitemusuario).text = ": ${Seguridad.formatearRut(a.usuario)}"
         val tvAccion = vista.findViewById<TextView>(R.id.tvitemaccion)
         tvAccion.text = ": ${a.accion}"
-        tvAccion.setTextColor(if (a.accion == Accion.CERCA) Color.RED else Color.BLACK)
+        tvAccion.setTextColor(
+            when (a.accion) {
+                Accion.CERCA -> Color.RED
+                Accion.OBSTACULO -> Color.rgb(230, 81, 0)
+                Accion.SEGURA -> Color.rgb(46, 125, 50)
+                else -> Color.BLACK
+            }
+        )
         vista.findViewById<TextView>(R.id.tvitemdistancia).text =
             if (a.distancia >= 0) ": ${a.distancia} cm" else ": -"
         return vista
