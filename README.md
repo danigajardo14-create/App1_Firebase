@@ -131,6 +131,8 @@ registran quién realiza cada acción.
 
 ## 6. Pruebas
 
+Informe completo de seguridad y pruebas: [docs/Informe_Seguridad_Pruebas.docx](docs/Informe_Seguridad_Pruebas.docx)
+
 **Pruebas automáticas (JUnit)** en `app/src/test`: validación de RUT, hash de contraseñas, reglas de contraseña y
 clasificación de zonas. Se ejecutan en Android Studio con clic derecho sobre la carpeta `test` → *Run Tests*.
 Resultado: 12 de 12 pruebas aprobadas.
